@@ -32,10 +32,16 @@ class UserUCImpl(private val db: Database) : UserUC {
         return getUserByUsername(username) == null
     }
 
-    override fun registerUser(username: String, password: String): Int = transaction(db) {
+    override fun emailAvailable(email: String): Boolean = transaction(db) {
+        UserTable.select { UserTable.email.eq(email) }
+            .singleOrNull() == null
+    }
+
+    override fun registerUser(username: String, password: String, email: String): Int = transaction(db) {
         val userId = UserTable.insertAndGetId {
             it[UserTable.username] = username
             it[UserTable.passwordHash] = BCrypt.withDefaults().hash(12, password.toByteArray())
+            it[UserTable.email] = email
         }
 
         UserStatsTable.insert {
@@ -64,6 +70,10 @@ class UserUCImpl(private val db: Database) : UserUC {
         ))
 
         userId.value
+    }
+
+    override fun registerUnconfirmedUser(username: String, password: String, email: String): Unit = transaction(db) {
+        UnconfirmedUserTable.insert {  }
     }
 
     override fun getUserIdByCredentials(username: String, password: String): Int? {

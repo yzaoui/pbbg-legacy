@@ -7,7 +7,9 @@ interface UserUC {
     fun getUserById(userId: Int): User?
     fun getUserByUsername(username: String): User?
     fun usernameAvailable(username: String): Boolean
-    fun registerUser(username: String, password: String): Int
+    fun emailAvailable(email: String): Boolean
+    fun registerUser(username: String, password: String, email: String): Int
+    fun registerUnconfirmedUser(username: String, password: String, email: String)
     fun getUserIdByCredentials(username: String, password: String): Int?
     fun getUserStatsByUserId(userId: Int): UserStats
 

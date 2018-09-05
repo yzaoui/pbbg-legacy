@@ -8,3 +8,5 @@ const val USERNAME_REGEX_DESCRIPTION = "Username must consist of $USERNAME_MIN_L
 const val PASSWORD_MIN_LENGTH = 6
 const val PASSWORD_REGEX = ".{$PASSWORD_MIN_LENGTH,}"
 const val PASSWORD_REGEX_DESCRIPTION = "Password must consist of at least $PASSWORD_MIN_LENGTH characters."
+
+const val EMAIL_MAX_LENGTH = 256

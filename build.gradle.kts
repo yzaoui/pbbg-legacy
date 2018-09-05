@@ -38,6 +38,7 @@ dependencies {
     compile("io.ktor:ktor-gson:${Versions.KTOR}")
     compile("org.jetbrains.kotlinx:kotlinx-html-jvm:0.6.10")
     compile("ch.qos.logback:logback-classic:1.2.3")
+    compile("org.apache.commons:commons-email:1.5")
 
     testCompile("io.ktor:ktor-server-test-host:${Versions.KTOR}")
     testCompile("org.junit.jupiter:junit-jupiter-api:5.3.2")
